@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+  namespace: three-tier-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+        - name: django
+          image: django-app
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_HOST
+              value: mysql
+            - name: DATABASE_NAME
+              value: mydb
+            - name: DATABASE_USER
+              value: myuser
+            - name: DATABASE_PASSWORD
+              value: mypassword
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: django
+  namespace: three-tier-app
+spec:
+  ports:
+    - port: 8000
+  selector:
+    app: django
