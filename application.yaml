@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp
+spec:
+  destination:
+    namespace: test
+    server: https://kubernetes.default.svc
+  source:
+    path: deployments
+    repoURL: https://github.com/Susanta-Adak/Three-Tier-Application-Deployment
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      enabled: true
+    syncOptions:
+      - CreateNamespace=true
