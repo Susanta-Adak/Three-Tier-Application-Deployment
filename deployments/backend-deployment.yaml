@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: susantaadak/test-backend:v1
+          image: susantaadak/test-backend:v2
           ports:
             - containerPort: 5001
           env:
