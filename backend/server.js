@@ -4,13 +4,15 @@ const cors = require("cors");
 
 const User = require("./models/User");
 
+const MONGO_URI = process.env.MONGO_URI;
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
 mongoose.connect(
-  "mongodb://admin:password123@localhost:27017/formdb?authSource=admin"
+  MONGO_URI
 );
 
 mongoose.connection.once("open", () => {
