@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+const API_URL = process.env.BACKEND_PORT;
 function App() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -7,7 +8,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:5001/submit", {
+    await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
